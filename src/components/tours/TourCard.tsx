@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock3, MapPin, MessageCircle } from "lucide-react";
 import type { Tour } from "@/data/tours";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 type TourCardProps = {
   tour: Tour;
@@ -34,7 +35,7 @@ export default function TourCard({ tour }: TourCardProps) {
       </Link>
 
       <div className="p-5">
-        <div className="flex items-center gap-1.5 text-sm text-slate-500">
+        <div className="flex items-center gap-1.5 text-sm text-slat-500">
           <MapPin className="size-4 shrink-0 text-coral" />
           <span>{tour.destination}</span>
         </div>
@@ -67,13 +68,15 @@ export default function TourCard({ tour }: TourCardProps) {
           </Link>
 
           <a
-            href={whatsappUrl}
+            href={getWhatsAppUrl(
+              `Hello, I would like details about ${tour.title}, including itinerary, available dates, and package pricing.`,
+            )}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-1 rounded-lg bg-coral px-3 py-3 text-sm font-semibold text-white transition hover:opacity-90"
           >
             <MessageCircle className="size-4" />
-            Enquire
+            Enquire on WhatsApp
           </a>
         </div>
       </div>

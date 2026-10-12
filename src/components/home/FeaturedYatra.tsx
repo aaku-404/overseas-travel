@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 const highlights = [
   "Trip itinerary and duration",
@@ -78,13 +79,15 @@ export default function FeaturedYatra() {
               </Link>
 
               <a
-                href="https://wa.me/9779800000000"
+                href={getWhatsAppUrl(
+                  "Hello, I would like information about the Kailash Mansarovar Yatra.",
+                )}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-5 py-3 font-semibold transition hover:bg-white/10"
               >
                 <MessageCircle className="size-4" />
-                Enquire
+                Enquire on WhatsApp
               </a>
             </div>
 

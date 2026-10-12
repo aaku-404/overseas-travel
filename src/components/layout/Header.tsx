@@ -36,7 +36,7 @@ export default function Header() {
         </nav>
 
         <a
-          href="tel:+9779800000000"
+          href={`tel:${siteConfig.contact.phoneLink}`}
           className="hidden items-center gap-2 rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 md:flex"
         >
           <Phone className="size-4" />
@@ -77,7 +77,7 @@ export default function Header() {
             ))}
 
             <a
-              href="tel:+9779800000000"
+              href={`tel:${siteConfig.contact.phoneLink}`}
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-coral px-4 py-3 font-semibold"
             >
               <Phone className="size-4" />

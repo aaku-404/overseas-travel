@@ -21,7 +21,7 @@ export const tours: Tour[] = [
     priceLabel: "Request current price",
     image: "/images/kailash-mansarovar.jpg",
     description:
-      "Explore the pilgrimage route, travel requirements and package options with our team.",
+      "Explore the pilgrimage route, travel requirements and package options with our team. ",
     featured: true,
   },
   {
