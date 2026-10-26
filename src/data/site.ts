@@ -14,10 +14,10 @@ export const siteConfig = {
 
   contact: {
     // Replace these example values with the real business details.
-    phoneDisplay: "+977-9816264341",
-    phoneLink: "+9779816264341",
-    whatsappNumber: "9779816264341",
-    email: "hello@example.com",
-    location: "Kathmandu, Nepal",
+    phoneDisplay: "+91-57655752 | +977-9812117278",
+    phoneLink: "+91-57655752",
+    whatsappNumber: "9779812117278",
+    email: "kundan.mishra@gmail.com",
+    location: "Vadodara, Gujarat, India - 391760",
   },
 } as const;

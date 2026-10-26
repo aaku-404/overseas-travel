@@ -11,7 +11,7 @@ import {
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export const metadata = {
-  title: "Overseas Travel Assistance",
+  title: "Our Services",
   description:
     "Your trusted partner for Himalayan trekking, pilgrimage yatras, and customized overseas travel assistance. Plan your next mountain adventure with confidence.",
 };

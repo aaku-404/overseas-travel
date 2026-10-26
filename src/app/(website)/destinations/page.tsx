@@ -4,7 +4,7 @@ import DestinationCard from "@/components/destinations/DestinationCard";
 import { destinations } from "@/data/destinations";
 
 export const metadata = {
-  title: "Himalayan Destinations",
+  title: "Destinations",
   description:
     "Explore Himalayan destinations, mountain trekking regions, pilgrimage journeys, and holiday options.",
 };

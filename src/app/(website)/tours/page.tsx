@@ -3,7 +3,7 @@ import TourCatalogue from "@/components/tours/TourCatalogue";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {
-  title: "Himalayan Tour Packages",
+  title: "Tour Packages",
   description:
     "Explore Himalayan trekking, pilgrimage and holiday packages. Contact our team for itineraries and current pricing.",
 };
