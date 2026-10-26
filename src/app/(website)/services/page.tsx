@@ -171,7 +171,7 @@ export default function ServicesPage() {
                   </ul>
 
                   <a
-                    href={`https://wa.me/9779816264341?text=${message}`}
+                    href={`https://wa.me/9779812117278?text=${message}`}
                     target="_blank"
                     rel="noreferrer"
                     className="mt-7 inline-flex items-center gap-2 font-semibold text-coral transition hover:text-navy"

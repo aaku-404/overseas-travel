@@ -1,6 +1,7 @@
 
 import TourCatalogue from "@/components/tours/TourCatalogue";
 import { createClient } from "@/lib/supabase/server";
+import type { Tour } from "@/data/tours";
 
 export const metadata = {
   title: "Tour Packages",
@@ -32,5 +33,17 @@ export default async function ToursPage() {
     );
   }
 
-  return <TourCatalogue tours={tours ?? []} />;
+  const catalogueTours: Tour[] = (tours ?? []).map((tour) => ({
+    slug: tour.slug,
+    title: tour.title,
+    destination: tour.destination,
+    duration: tour.duration ?? "Contact for details",
+    category: tour.category,
+    priceLabel: tour.price_label ?? "Request current price",
+    image: tour.image_url ?? "",
+    description: tour.description,
+    featured: tour.featured,
+  }));
+
+  return <TourCatalogue tours={catalogueTours} />;
 }

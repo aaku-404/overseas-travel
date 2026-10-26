@@ -155,7 +155,7 @@ export default async function TourDetailPage({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-coral px-5 py-3.5 font-semibold text-white transition hover:opacity-90"
+              className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-coral px-5 py-3.5 font-semibold !text-white transition hover:opacity-90"
             >
               <MessageCircle className="size-5" />
               Enquire on WhatsApp

@@ -2,21 +2,23 @@
 @import "tailwindcss";
 
 :root {
-  --color-navy: #071426;
-  --color-navy-light: #10233b;
-  --color-coral: #ff4268;
-  --color-orange: #ff9d2e;
-  --color-cream: #fffdf8;
-  --color-muted: #64748b;
-  --color-border: #e8edf3;
+  --brand-navy: #071426;
+  --brand-navy-light: #10233b;
+  --brand-coral: #ff4268;
+  --brand-orange: #ff9d2e;
+  --brand-cream: #fffdf8;
+  --brand-muted: #64748b;
+  --brand-border: #e8edf3;
 }
 
 @theme inline {
-  --color-navy: var(--color-navy);
-  --color-navy-light: var(--color-navy-light);
-  --color-coral: var(--color-coral);
-  --color-orange: var(--color-orange);
-  --color-cream: var(--color-cream);
+  --color-navy: var(--brand-navy);
+  --color-navy-light: var(--brand-navy-light);
+  --color-coral: var(--brand-coral);
+  --color-orange: var(--brand-orange);
+  --color-cream: var(--brand-cream);
+  --color-muted: var(--brand-muted);
+  --color-border: var(--brand-border);
 }
 
 * {
@@ -30,7 +32,7 @@ html {
 body {
   margin: 0;
   background: white;
-  color: var(--color-navy);
+  color: var(--brand-navy);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -40,6 +42,7 @@ input,
 textarea,
 select {
   -webkit-tap-highlight-color: transparent;
+  font: inherit;
 }
 
 a {
@@ -47,14 +50,7 @@ a {
   text-decoration: none;
 }
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
 ::selection {
-  background: #ff4268;
+  background: var(--brand-coral);
   color: white;
 }

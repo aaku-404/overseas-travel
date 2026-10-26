@@ -42,7 +42,7 @@ export default function DestinationCard({
           {destination.highlights.map((highlight) => (
             <span
               key={highlight}
-              className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600"
+              className="rounded-full bg-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600"
             >
               {highlight}
             </span>
@@ -51,7 +51,7 @@ export default function DestinationCard({
 
         <Link
           href="/tours"
-          className="mt-6 inline-flex items-center gap-2 font-semibold text-coral transition hover:text-navy"
+          className="mt-6 inline-flex items-center gap-2 font-semibold !text-coral transition hover:text-navy"
         >
           Explore tours
           <ArrowRight className="size-4" />

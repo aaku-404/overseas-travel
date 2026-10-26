@@ -24,7 +24,7 @@ export default function Testimonials() {
 
             <Link
               href="/contact"
-              className="mt-7 inline-flex items-center gap-2 rounded-lg bg-navy px-5 py-3 font-semibold text-white transition hover:bg-navy-light"
+              className="mt-7 inline-flex items-center gap-2 rounded-lg bg-navy px-5 py-3 font-semibold !text-white transition hover:bg-navy-light"
             >
               Get in Touch
               <ArrowRight className="size-4" />
@@ -52,7 +52,7 @@ export default function Testimonials() {
               )}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 font-semibold text-coral transition hover:text-navy"
+              className="mt-6 inline-flex items-center gap-2 font-semibold !text-coral transition hover:text-navy"
             >
               <MessageCircle className="size-5" />
               Share your feedback

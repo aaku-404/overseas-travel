@@ -14,10 +14,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Admin | Overseas Travel Assistance",
-  description: "Your trusted partner for Himalayan trekking, pilgrimage yatras, and customized overseas travel assistance. Plan your next mountain adventure with confidence.",
+  description:
+    "Your trusted partner for Himalayan trekking, pilgrimage yatras, and customized overseas travel assistance. Plan your next mountain adventure with confidence.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="en"

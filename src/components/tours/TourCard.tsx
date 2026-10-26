@@ -12,7 +12,7 @@ type TourCardProps = {
 export default function TourCard({ tour }: TourCardProps) {
   const message = `Hello, I am interested in ${tour.title}. Please share the itinerary, available dates and current price.`;
 
-  // const whatsappUrl = `https://wa.me/9779816264341?text=${encodeURIComponent(message)}`;
+  // const whatsappUrl = `https://wa.me/9779812117278?text=${encodeURIComponent(message)}`;
 
   return (
     <article className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -36,7 +36,7 @@ export default function TourCard({ tour }: TourCardProps) {
       </Link>
 
       <div className="p-5">
-        <div className="flex items-center gap-1.5 text-sm text-slat-500">
+        <div className="flex items-center gap-1.5 text-sm text-slate-500">
           <MapPin className="size-4 shrink-0 text-coral" />
           <span>{tour.destination}</span>
         </div>
@@ -62,7 +62,7 @@ export default function TourCard({ tour }: TourCardProps) {
         <div className="mt-5 grid grid-cols-2 gap-2">
           <Link
             href={`/tours/${tour.slug}`}
-            className="inline-flex items-center justify-center gap-1 rounded-lg bg-navy px-3 py-3 text-sm font-semibold text-white transition hover:bg-navy-light"
+            className="inline-flex items-center justify-center gap-1 rounded-lg bg-navy px-3 py-3 text-sm font-semibold !text-white transition hover:bg-navy-light"
           >
             Details
             <ArrowRight className="size-4" />
@@ -74,7 +74,7 @@ export default function TourCard({ tour }: TourCardProps) {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1 rounded-lg bg-coral px-3 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+            className="inline-flex items-center justify-center gap-1 rounded-lg bg-coral px-3 py-3 text-sm font-semibold !text-white transition hover:opacity-90"
           >
             <MessageCircle className="size-4" />
             Enquire on WhatsApp

@@ -117,7 +117,7 @@ export default async function ExpeditionPackages() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Enquire about ${expedition.title} on WhatsApp`}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-coral px-4 py-3 text-sm font-semibold text-white transition hover:bg-rose-500"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-coral px-4 py-3 text-sm font-semibold !text-white transition hover:bg-rose-500"
                 >
                   <MessageCircle className="size-4" />
                   Enquire
