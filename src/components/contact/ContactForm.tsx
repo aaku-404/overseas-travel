@@ -44,7 +44,7 @@ export default function ContactForm() {
 
         const whatsappUrl = getWhatsAppUrl(whatsappMessage);
 
-        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+        window.location.href = whatsappUrl;
     }
 
     return (

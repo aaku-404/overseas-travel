@@ -11,9 +11,9 @@ import {
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export const metadata = {
-  title: "Our Travel Services",
+  title: "Overseas Travel Assistance",
   description:
-    "Explore Himalayan trekking, pilgrimage travel, accommodation assistance, transport planning, and other travel services.",
+    "Your trusted partner for Himalayan trekking, pilgrimage yatras, and customized overseas travel assistance. Plan your next mountain adventure with confidence.",
 };
 
 const services = [
@@ -171,7 +171,7 @@ export default function ServicesPage() {
                   </ul>
 
                   <a
-                    href={`https://wa.me/9779800000000?text=${message}`}
+                    href={`https://wa.me/9779816264341?text=${message}`}
                     target="_blank"
                     rel="noreferrer"
                     className="mt-7 inline-flex items-center gap-2 font-semibold text-coral transition hover:text-navy"
@@ -205,7 +205,7 @@ export default function ServicesPage() {
 
           <Link
             href="/contact"
-            className="mt-7 inline-flex items-center gap-2 rounded-lg bg-coral px-6 py-3.5 font-semibold text-white transition hover:bg-rose-500"
+            className="mt-7 inline-flex items-center gap-2 rounded-lg bg-coral px-6 py-3.5 font-semibold !text-white transition hover:bg-rose-500"
           >
             Send an Enquiry
             <ArrowRight className="size-4" />

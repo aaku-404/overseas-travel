@@ -1,11 +1,27 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { tours } from "@/data/tours";
+
+import { createClient } from "@/lib/supabase/server";
+import { mapSupabaseTour } from "@/lib/tours";
 import TourCard from "@/components/tours/TourCard";
 
-export default function SpecialTourPackages() {
-  const featuredTours = tours.slice(0, 4);
+export default async function SpecialTourPackages() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("tours")
+    .select("*")
+    .eq("is_published", true)
+    .eq("featured", true)
+    .order("created_at", { ascending: false })
+    .limit(4);
+
+  if (error) {
+    console.error("Failed to fetch homepage tours:", error.message);
+  }
+
+  const featuredTours = (data ?? []).map(mapSupabaseTour);
 
   return (
     <section className="bg-cream px-5 py-20 sm:py-24">
@@ -36,11 +52,20 @@ export default function SpecialTourPackages() {
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {featuredTours.map((tour) => (
-            <TourCard key={tour.slug} tour={tour} />
-          ))}
-        </div>
+        {featuredTours.length > 0 && (
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredTours.map((tour) => (
+              <TourCard key={tour.slug} tour={tour} />
+            ))}
+          </div>
+        )}
+
+        {featuredTours.length === 0 && (
+          <p className="mt-10 text-slate-600">
+            Tour packages will be announced soon. Please contact our
+            team for available trips.
+          </p>
+        )}
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, MessageCircle, Star } from "lucide-react";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export default function Testimonials() {
   return (
@@ -46,7 +47,9 @@ export default function Testimonials() {
             </p>
 
             <a
-              href="https://wa.me/9779800000000?text=Hello%2C%20I%20would%20like%20to%20share%20feedback%20about%20my%20trip."
+              href={getWhatsAppUrl(
+                "Hello, I would like to share feedback about my trip.",
+              )}
               target="_blank"
               rel="noreferrer"
               className="mt-6 inline-flex items-center gap-2 font-semibold text-coral transition hover:text-navy"

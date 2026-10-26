@@ -1,32 +1,27 @@
-"use client";
 
 import Link from "next/link";
 import { ArrowRight, Mountain, MessageCircle } from "lucide-react";
 
-const expeditions = [
-  {
-    name: "Everest Base Camp Trek",
-    region: "Khumbu, Nepal",
-    duration: "To be confirmed",
-    price: "Request price",
-  },
-  {
-    name: "Annapurna Circuit Trek",
-    region: "Annapurna, Nepal",
-    duration: "To be confirmed",
-    price: "Request price",
-  },
-  {
-    name: "Kailash Mansarovar Yatra",
-    region: "Tibet",
-    duration: "To be confirmed",
-    price: "Request price",
-  },
-];
+import { createClient } from "@/lib/supabase/server";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
-const whatsappNumber = "9779800000000"; // Replace with the business number
+export default async function ExpeditionPackages() {
+  const supabase = await createClient();
 
-export default function ExpeditionPackages() {
+  const { data, error } = await supabase
+    .from("tours")
+    .select("slug, title, destination, duration, category, price_label")
+    .eq("is_published", true)
+    .in("category", ["Trekking", "Pilgrimage", "Expedition"])
+    .order("created_at", { ascending: false })
+    .limit(6);
+
+  if (error) {
+    console.error("Failed to fetch expeditions:", error.message);
+  }
+
+  const expeditions = data ?? [];
+
   return (
     <section className="bg-white py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
@@ -54,23 +49,19 @@ export default function ExpeditionPackages() {
           </Link>
         </div>
 
-        <div className="mt-10 overflow-hidden rounded-2xl border border-slate-200">
-          <div className="hidden grid-cols-[1.6fr_1fr_1fr_1fr_auto] gap-4 bg-navy px-6 py-4 text-xs font-bold uppercase tracking-wider text-white md:grid">
-            <span>Expedition</span>
-            <span>Region</span>
-            <span>Duration</span>
-            <span>Package price</span>
-            <span>Enquire</span>
-          </div>
+        {expeditions.length > 0 ? (
+          <div className="mt-10 overflow-hidden rounded-2xl border border-slate-200">
+            <div className="hidden grid-cols-[1.6fr_1fr_1fr_1fr_auto] gap-4 bg-navy px-6 py-4 text-xs font-bold uppercase tracking-wider text-white md:grid">
+              <span>Expedition</span>
+              <span>Region</span>
+              <span>Duration</span>
+              <span>Package price</span>
+              <span>Enquire</span>
+            </div>
 
-          {expeditions.map((expedition, index) => {
-            const message = encodeURIComponent(
-              `Hello, I would like details about ${expedition.name}, including itinerary, available dates, and package pricing.`,
-            );
-
-            return (
+            {expeditions.map((expedition, index) => (
               <div
-                key={expedition.name}
+                key={expedition.slug}
                 className={`grid gap-4 px-5 py-6 md:grid-cols-[1.6fr_1fr_1fr_1fr_auto] md:items-center md:px-6 ${
                   index !== expeditions.length - 1
                     ? "border-b border-slate-200"
@@ -87,7 +78,7 @@ export default function ExpeditionPackages() {
                       Expedition
                     </p>
                     <h3 className="font-bold text-navy">
-                      {expedition.name}
+                      {expedition.title}
                     </h3>
                   </div>
                 </div>
@@ -97,7 +88,7 @@ export default function ExpeditionPackages() {
                     Region
                   </p>
                   <p className="text-sm text-slate-600">
-                    {expedition.region}
+                    {expedition.destination}
                   </p>
                 </div>
 
@@ -106,7 +97,7 @@ export default function ExpeditionPackages() {
                     Duration
                   </p>
                   <p className="text-sm text-slate-600">
-                    {expedition.duration}
+                    {expedition.duration || "To be confirmed"}
                   </p>
                 </div>
 
@@ -114,27 +105,36 @@ export default function ExpeditionPackages() {
                   <p className="text-xs font-medium text-slate-400 md:hidden">
                     Package price
                   </p>
-                  <p className="font-bold text-navy">{expedition.price}</p>
+                  <p className="font-bold text-navy">
+                    {expedition.price_label || "Contact for price"}
+                  </p>
                 </div>
 
                 <a
-                  href={`https://wa.me/${whatsappNumber}?text=${message}`}
+                  href={getWhatsAppUrl(
+                    `Hello, I would like details about ${expedition.title}, including itinerary, available dates, and package pricing.`,
+                  )}
                   target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Enquire about ${expedition.name} on WhatsApp`}
+                  rel="noopener noreferrer"
+                  aria-label={`Enquire about ${expedition.title} on WhatsApp`}
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-coral px-4 py-3 text-sm font-semibold text-white transition hover:bg-rose-500"
                 >
                   <MessageCircle className="size-4" />
                   Enquire
                 </a>
               </div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-10 text-slate-600">
+            Expedition packages will be announced soon. Contact our team
+            for available trekking and pilgrimage options.
+          </p>
+        )}
 
         <p className="mt-4 text-xs leading-6 text-slate-500">
-          Durations and prices can be asked on "Enquire" button. Confirm all package details
-          with the business before booking.
+          Confirm all package details, durations, availability, and prices
+          with the agency before booking.
         </p>
       </div>
     </section>

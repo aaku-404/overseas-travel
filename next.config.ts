@@ -10,6 +10,22 @@ const nextConfig: NextConfig = {
       },
     },
   },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "daes5xl8ji16n.cloudfront.net",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "gjabzwowgszdtblvityd.supabase.co",
+        pathname: "/**",
+      },
+    ],
+  },
+
   allowedDevOrigins: ['192.168.231.1', '192.168.1.71'],
 };
 

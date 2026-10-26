@@ -1,5 +1,4 @@
 
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -10,23 +9,26 @@ import {
   Phone,
 } from "lucide-react";
 
-import { tours } from "@/data/tours";
+import { createClient } from "@/lib/supabase/server";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { siteConfig } from "@/data/site";
 
 type TourDetailPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
-  return tours.map((tour) => ({
-    slug: tour.slug,
-  }));
-}
-
 export async function generateMetadata({
   params,
 }: TourDetailPageProps) {
   const { slug } = await params;
-  const tour = tours.find((item) => item.slug === slug);
+  const supabase = await createClient();
+
+  const { data: tour } = await supabase
+    .from("tours")
+    .select("title, description")
+    .eq("slug", slug)
+    .eq("is_published", true)
+    .maybeSingle();
 
   if (!tour) {
     return { title: "Tour Not Found" };
@@ -42,16 +44,26 @@ export default async function TourDetailPage({
   params,
 }: TourDetailPageProps) {
   const { slug } = await params;
-  const tour = tours.find((item) => item.slug === slug);
+  const supabase = await createClient();
+
+  const { data: tour, error } = await supabase
+    .from("tours")
+    .select("*")
+    .eq("slug", slug)
+    .eq("is_published", true)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Failed to fetch tour:", error.message);
+    throw new Error("Unable to load tour details.");
+  }
 
   if (!tour) {
     notFound();
   }
 
   const message = `Hello, I am interested in ${tour.title}. Please share the itinerary, departure dates and current price.`;
-
-  const whatsappUrl =
-    `https://wa.me/9779800000000?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = getWhatsAppUrl(message);
 
   return (
     <>
@@ -71,14 +83,17 @@ export default async function TourDetailPage({
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.5fr_1fr]">
           <div>
             <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-slate-200">
-              <Image
-                src={tour.image}
-                alt={tour.title}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 60vw"
-                className="object-cover"
-              />
+              {tour.image_url ? (
+                <img
+                  src={tour.image_url}
+                  alt={tour.title}
+                  className="absolute inset-0 size-full object-cover"
+                />
+              ) : (
+                <div className="flex size-full items-center justify-center bg-slate-200 text-slate-500">
+                  Tour image coming soon
+                </div>
+              )}
             </div>
 
             <div className="mt-8">
@@ -96,10 +111,12 @@ export default async function TourDetailPage({
                   {tour.destination}
                 </span>
 
-                <span className="flex items-center gap-2">
-                  <Clock3 className="size-4 text-coral" />
-                  {tour.duration}
-                </span>
+                {tour.duration && (
+                  <span className="flex items-center gap-2">
+                    <Clock3 className="size-4 text-coral" />
+                    {tour.duration}
+                  </span>
+                )}
               </div>
 
               <div className="mt-8 border-t border-slate-200 pt-6">
@@ -126,7 +143,7 @@ export default async function TourDetailPage({
             </p>
 
             <p className="mt-2 text-2xl font-bold text-navy">
-              {tour.priceLabel}
+              {tour.price_label || "Contact for price"}
             </p>
 
             <p className="mt-4 text-sm leading-6 text-slate-600">
@@ -145,11 +162,11 @@ export default async function TourDetailPage({
             </a>
 
             <a
-              href="tel:+9779800000000"
+              href={`tel:${siteConfig.contact.phoneLink}`}
               className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-slate-200 px-5 py-3.5 font-semibold text-navy transition hover:bg-slate-50"
             >
               <Phone className="size-5" />
-              Call the agency
+              Call {siteConfig.contact.phoneDisplay}
             </a>
 
             <p className="mt-4 text-xs leading-5 text-slate-500">

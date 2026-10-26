@@ -160,14 +160,14 @@ export default function AboutPage() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/tours"
-              className="rounded-lg bg-navy px-5 py-3 font-semibold text-white transition hover:bg-navy-light"
+              className="rounded-lg bg-coral px-5 py-3 font-semibold !text-white transition hover:bg-rose-500"
             >
               Browse Tours
             </Link>
 
             <Link
               href="/contact"
-              className="rounded-lg border border-slate-300 bg-white px-5 py-3 font-semibold text-navy transition hover:border-coral"
+              className="inline-flex items-center justify-center rounded-lg border border-black px-5 py-3 font-semibold text-black transition-colors duration-200 hover:bg-slate-300 hover:border-slate-800"
             >
               Contact Us
             </Link>

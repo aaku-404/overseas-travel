@@ -12,7 +12,7 @@ type TourCardProps = {
 export default function TourCard({ tour }: TourCardProps) {
   const message = `Hello, I am interested in ${tour.title}. Please share the itinerary, available dates and current price.`;
 
-  const whatsappUrl = `https://wa.me/9779800000000?text=${encodeURIComponent(message)}`;
+  // const whatsappUrl = `https://wa.me/9779816264341?text=${encodeURIComponent(message)}`;
 
   return (
     <article className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -22,8 +22,9 @@ export default function TourCard({ tour }: TourCardProps) {
         aria-label={`View ${tour.title}`}
       >
         <Image
-          src={tour.image}
+          src={tour.image || "/images/kailash-mansarovar.jpg"}
           alt={tour.title}
+          loading="eager"
           fill
           sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
           className="object-cover transition duration-500 group-hover:scale-105"
